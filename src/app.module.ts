@@ -11,8 +11,9 @@ import configuration from './config/configuration';
     UserModule,
     MongooseModule.forRoot('mongodb://localhost/catalog_user'),
     ConfigModule.forRoot({
-      load:[configuration]
-    })
+      isGlobal:true,
+      load: [configuration],
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

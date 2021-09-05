@@ -33,7 +33,9 @@ export class UserController {
 
     @Get('me')
     async getCurrentUser(@Req() req: Request): Promise<any> {
-        let response = await this.authHttpService.axios.get('/user/me', { headers: { authorization: req.headers.authorization } })
+        let authorization = req.headers.authorization;
+        if (!authorization) return 'no authorization token found';
+        let response = await this.authHttpService.axios.get('/user/me', { headers: { authorization } })
         return response.data
     }
 

@@ -5,7 +5,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors();
+  app.enableCors({
+    exposedHeaders:'Authorization'
+  });
   const config = new DocumentBuilder()
     .setTitle('Catalog Gateway Service')
     .setDescription('Gateway service for catalog')
